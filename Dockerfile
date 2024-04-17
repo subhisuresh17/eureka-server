@@ -19,8 +19,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Build the application using Maven
-RUN ./mvnw package -DskipTests
-
+RUN mvn -B -DskipTests clean package
 # Expose port 8761
 EXPOSE 8761
 
