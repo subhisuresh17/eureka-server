@@ -28,6 +28,22 @@ pipeline {
                 }
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                // Change directory to the cloned repository
+                dir('eureka-server') {
+                    // Build Docker image using your Dockerfile in the current directory
+                    script {
+                        def dockerBuild = sh(script: "sudo docker build -t $DOCKER_IMAGE_NAME .", returnStatus: true)
+                        if (dockerBuild == 0) {
+                            echo "Docker image built successfully."
+                        } else {
+                            error "Failed to build Docker image."
+                        }
+                    }
+                }
+            }
+        }
       
       stage('Run Docker Container') {
             steps {
