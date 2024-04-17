@@ -20,7 +20,7 @@ pipeline {
             steps {
                 // Change directory to the cloned repository and build the project with Maven, skipping tests
                 dir('eureka-server') {
-                    sh './mvnw package -DskipTests'
+                    sh 'mvn -B -DskipTests clean package'
                 }
             }
         }
