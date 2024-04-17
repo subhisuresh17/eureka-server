@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_USERNAME = 'subhikshasuresh1701'
         DOCKER_HUB_PASSWORD = 'Love170801'
-        DOCKER_IMAGE_NAME = 'Eurekha-Server'
+        DOCKER_IMAGE_NAME = 'eurekha-server'
         GIT_USERNAME = 'subhisuresh17'
         GIT_PASSWORD = 'Love170801*'
         GIT_REPO_URL = 'https://github.com/subhisuresh17/eureka-server.git'
