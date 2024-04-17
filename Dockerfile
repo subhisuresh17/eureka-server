@@ -1,5 +1,13 @@
-# Use a base image with Java 17 installed
-FROM adoptopenjdk/openjdk17:alpine
+FROM ubuntu:20.04
+
+# Install timezone data and set the timezone
+RUN apt-get update && \
+    apt-get install -y tzdata && \
+    ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata
+
+# Install Java, Git, and other dependencies
+RUN apt-get install -y openjdk-17-jdk git
 
 # Set the working directory inside the container
 WORKDIR /app
