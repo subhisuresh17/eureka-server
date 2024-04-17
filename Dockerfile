@@ -6,8 +6,8 @@ RUN apt-get update && \
     ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata
 
-# Install Java, Git, and other dependencies
-RUN apt-get install -y openjdk-17-jdk git
+# Install Java, Git, Maven, and other dependencies
+RUN apt-get install -y openjdk-17-jdk git maven
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -20,6 +20,7 @@ COPY src ./src
 
 # Build the application using Maven
 RUN mvn -B -DskipTests clean package
+
 # Expose port 8761
 EXPOSE 8761
 
