@@ -17,10 +17,13 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
+                // Copy source code into Dockerfile directory
+                sh 'cp -r * /eureka-server/src/'
+
                 // Change directory to where your Dockerfile is located
                 dir('/eureka-server/Dockerfile') {
-                    // Build Docker image using your custom Dockerfile
-                    sh "sudo docker build -t $DOCKER_IMAGE_NAME -f Dockerfile ."
+                    // Build Docker image using your Dockerfile
+                    sh "sudo docker build -t $DOCKER_IMAGE_NAME ."
                     sh "sudo docker tag $DOCKER_IMAGE_NAME $DOCKER_HUB_USERNAME/$DOCKER_IMAGE_NAME:latest"
                 }
             }
